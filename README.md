@@ -1,14 +1,17 @@
-# Logo Kit — Figma Plugin Specification 
+# Logo Kit — Figma Plugin Specification (v10, Branded Edition)
 
+**Status:** Implementation-ready  
+**Supersedes:** v9  
+**Runtime:** Figma Plugin API, main thread + UI iframe  
+**Network:** None  
+**Backend:** None  
+**External AI:** None  
+**Product credit:** Leslie Williams, Ovalay Studios  
+**Creator link:** https://x.com/shugardadddy  
 
-Runtime: Figma Plugin API, main thread + UI iframe
+---
 
-Product credit: Leslie Williams, Ovalay Studios
-Creator link: https://x.com/shugardadddy
-
-────────
-
-0. What changed from v9
+## 0. What changed from v9
 
 v10 introduces typography without turning the plugin into a typography-detection tool.
 
@@ -16,20 +19,20 @@ The plugin now allows the user to choose fonts already available in their Figma 
 
 Two font sources are supported:
 
-• Portable fonts that are broadly available inside Figma
-• All fonts available to the current user, including local and organisation fonts
+- Portable fonts that are broadly available inside Figma
+- All fonts available to the current user, including local and organisation fonts
 
 These must not appear as two visibly separate modes.
 
 The experience should feel like one intelligent font picker that:
 
-• Prioritises portable choices
-• Still exposes the full font library
-• Clearly communicates portability risk
-• Does not force the user to understand Figma font infrastructure
-• Does not visually split the UI into “Safe” and “Advanced” sections
+- Prioritises portable choices
+- Still exposes the full font library
+- Clearly communicates portability risk
+- Does not force the user to understand Figma font infrastructure
+- Does not visually split the UI into “Safe” and “Advanced” sections
 
-Binding changes
+### Binding changes
 
 1. Add a Typography step to the generation flow.
 2. Add one unified font picker.
@@ -42,41 +45,41 @@ Binding changes
 9. Never download or embed font files.
 10. Never imply that a selected local font will be editable for every recipient.
 
-────────
+---
 
-1. Product definition
+# 1. Product definition
 
-Logo Kit converts selected logo artwork into a polished, client-presentable Logo Handover Document inside Figma.
+Logo Kit converts selected logo artwork into a polished, client-presentable **Logo Handover Document** inside Figma.
 
 The document contains:
 
-• Cover
-• Identity overview
-• Logo treatments
-• Clear space
-• Minimum size
-• Background use
-• Recommended usage
-• Brand palette
-• Colour scales
-• Accessibility and pairings
-• Gradients where available
-• Typography
-• Notes and warnings
+- Cover
+- Identity overview
+- Logo treatments
+- Clear space
+- Minimum size
+- Background use
+- Recommended usage
+- Brand palette
+- Colour scales
+- Accessibility and pairings
+- Gradients where available
+- Typography
+- Notes and warnings
 
 The output is a sequence of designed presentation frames.
 
 It should feel like a compact identity document assembled by a strong brand designer.
 
-────────
+---
 
-2. Product promise
+# 2. Product promise
 
 > Turn finished logo artwork into a polished brand handover document.
 
-2.1 Product attribution
+# 2.1 Product attribution
 
-Logo Kit is a product by Leslie Williams from Ovalay Studios.
+Logo Kit is a product by **Leslie Williams from Ovalay Studios**.
 
 The attribution must appear in two places:
 
@@ -93,19 +96,19 @@ The creator name must link to:
 https://x.com/shugardadddy
 ```
 
-2.1.1 Plugin UI treatment
+## 2.1.1 Plugin UI treatment
 
 Place the attribution in the bottom region of the plugin UI.
 
 Requirements:
 
-• Keep it visually secondary to the current task.
-• Do not render it as a promotional banner.
-• Do not place it inside the primary action area.
-• Preserve it across every step of the flow.
-• Make “Leslie Williams” or the full attribution clickable.
-• Open the link externally through the Figma Plugin API.
-• Do not require network access for the plugin’s core functionality.
+- Keep it visually secondary to the current task.
+- Do not render it as a promotional banner.
+- Do not place it inside the primary action area.
+- Preserve it across every step of the flow.
+- Make “Leslie Williams” or the full attribution clickable.
+- Open the link externally through the Figma Plugin API.
+- Do not require network access for the plugin’s core functionality.
 
 Suggested treatment:
 
@@ -119,9 +122,9 @@ On activation:
 figma.openExternal('https://x.com/shugardadddy');
 ```
 
-2.1.2 Generated-document treatment
+## 2.1.2 Generated-document treatment
 
-Cover
+### Cover
 
 Add a small creator credit beneath the document descriptor or at the bottom edge of the frame:
 
@@ -149,7 +152,7 @@ creditText.setRangeHyperlink(
 );
 ```
 
-Notes page
+### Notes page
 
 Repeat the attribution once in the closing metadata block:
 
@@ -159,17 +162,17 @@ Generated with Logo Kit by Leslie Williams · Ovalay Studios
 
 The linked range must use the same URL.
 
-Visual rules
+### Visual rules
 
-• Keep the credit small and deliberate.
-• Maintain sufficient contrast.
-• Do not obscure or compete with the client’s identity.
-• Do not place the credit over the logo artwork.
-• Do not repeat the credit on every page.
-• Do not allow the user to edit the creator name or destination URL in v10.
-• The client’s brand must remain the dominant visual subject.
+- Keep the credit small and deliberate.
+- Maintain sufficient contrast.
+- Do not obscure or compete with the client’s identity.
+- Do not place the credit over the logo artwork.
+- Do not repeat the credit on every page.
+- Do not allow the user to edit the creator name or destination URL in v10.
+- The client’s brand must remain the dominant visual subject.
 
-2.1.3 Attribution data
+## 2.1.3 Attribution data
 
 Store the attribution as fixed product metadata:
 
@@ -184,67 +187,67 @@ interface ProductAttribution {
 
 This metadata is not user content and must not be inferred from the source artwork.
 
-────────
+---
 
-3. Scope
+# 3. Scope
 
-Included
+## Included
 
-• One or more selected logos
-• Structural logo-type assignment
-• Generated treatments
-• Clear-space guidance
-• Minimum-size guidance
-• Background-use guidance
-• Recommended usage
-• Colour extraction
-• Colour confirmation
-• Colour scales
-• Accessibility
-• Suggested pairings
-• Valid gradients
-• Display typeface selection
-• Body typeface selection
-• Typography page generation
-• Presentation-mode selection
-• Page-based document generation
-• Local-only processing
+- One or more selected logos
+- Structural logo-type assignment
+- Generated treatments
+- Clear-space guidance
+- Minimum-size guidance
+- Background-use guidance
+- Recommended usage
+- Colour extraction
+- Colour confirmation
+- Colour scales
+- Accessibility
+- Suggested pairings
+- Valid gradients
+- Display typeface selection
+- Body typeface selection
+- Typography page generation
+- Presentation-mode selection
+- Page-based document generation
+- Local-only processing
 
-Excluded
+## Excluded
 
-• Font detection from logo artwork
-• Font recognition from outlines
-• Font matching
-• Font recommendations based on brand personality
-• Font downloads
-• Font-file embedding
-• Font licensing verification
-• Automatic font substitution
-• Favicons
-• App icons
-• Asset Library
-• Export settings
-• Automatic file export
-• Mockups
-• Social templates
-• Figma variables
-• Paint styles
-• Developer tokens
-• CSS
-• External AI
-• Network calls
+- Font detection from logo artwork
+- Font recognition from outlines
+- Font matching
+- Font recommendations based on brand personality
+- Font downloads
+- Font-file embedding
+- Font licensing verification
+- Automatic font substitution
+- Favicons
+- App icons
+- Asset Library
+- Export settings
+- Automatic file export
+- Mockups
+- Social templates
+- Figma variables
+- Paint styles
+- Developer tokens
+- CSS
+- External AI
+- Network calls
 
-────────
+---
 
-3.1 Colour naming
+# 3.1 Colour naming
 
 Every extracted colour must receive a human-readable name in addition to its HEX, RGB and HSL values.
 
-Use an offline colour-name dataset bundled with the plugin. The implementation should use color-name-list as the naming source and perform nearest-colour matching locally. A perceptual distance method is preferred over raw RGB distance. color-namer is acceptable where bundle size remains reasonable because it ranks names using Delta-E colour difference.
+Use an offline colour-name dataset bundled with the plugin. The implementation should use `color-name-list` as the naming source and perform nearest-colour matching locally. A perceptual distance method is preferred over raw RGB distance. `color-namer` is acceptable where bundle size remains reasonable because it ranks names using Delta-E colour difference.
 
 The plugin must not invent names with a language model and must not make network requests to identify colours.
 
-3.1.1 Naming pipeline
+## 3.1.1 Naming pipeline
 
 For every confirmed palette colour:
 
@@ -268,26 +271,26 @@ interface NamedColour {
 }
 ```
 
-3.1.2 Naming rules
+## 3.1.2 Naming rules
 
-• Prefer concise, recognisable colour names.
-• Avoid duplicate names inside the same palette. When two colours resolve to the same name, add a restrained modifier based on relative lightness, saturation or hue, such as Deep, Light, Muted, Warm or Cool.
-• Do not use novelty names, offensive names or names that read like product copy.
-• Do not label a colour as Pantone, RAL, brand-standard or print-certified.
-• Display the generated name as editable suggested metadata, not objective truth.
-• Preserve the exact numeric value even when the name is edited.
+- Prefer concise, recognisable colour names.
+- Avoid duplicate names inside the same palette. When two colours resolve to the same name, add a restrained modifier based on relative lightness, saturation or hue, such as `Deep`, `Light`, `Muted`, `Warm` or `Cool`.
+- Do not use novelty names, offensive names or names that read like product copy.
+- Do not label a colour as Pantone, RAL, brand-standard or print-certified.
+- Display the generated name as editable suggested metadata, not objective truth.
+- Preserve the exact numeric value even when the name is edited.
 
-3.1.3 Colour confirmation UI
+## 3.1.3 Colour confirmation UI
 
 Each colour row must show:
 
-• Large swatch
-• Suggested colour name
-• Editable name field
-• HEX
-• RGB
-• HSL
-• Quiet confidence treatment when the nearest match is distant
+- Large swatch
+- Suggested colour name
+- Editable name field
+- HEX
+- RGB
+- HSL
+- Quiet confidence treatment when the nearest match is distant
 
 When the match is weak, use:
 
@@ -295,15 +298,15 @@ When the match is weak, use:
 
 Do not display raw Delta-E values in the primary UI. They may be recorded in the manifest.
 
-3.1.4 Generated document usage
+## 3.1.4 Generated document usage
 
 Use the colour name consistently on:
 
-• Brand Palette
-• Colour Scales
-• Accessibility & Pairings
-• Gradients
-• Notes, where a fallback or duplicate-name modifier was applied
+- Brand Palette
+- Colour Scales
+- Accessibility & Pairings
+- Gradients
+- Notes, where a fallback or duplicate-name modifier was applied
 
 A palette label should follow this hierarchy:
 
@@ -313,9 +316,9 @@ Ultramarine Blue
 RGB 74, 144, 217
 ```
 
-Do not show generic labels such as Primary, Secondary or Accent without the actual colour name. Role labels may appear as secondary metadata.
+Do not show generic labels such as `Primary`, `Secondary` or `Accent` without the actual colour name. Role labels may appear as secondary metadata.
 
-4. Typography model
+# 4. Typography model
 
 Typography in Logo Kit refers to fonts selected by the user for the generated handover document.
 
@@ -354,13 +357,13 @@ type FontPortability =
   | 'UNKNOWN';
 ```
 
-4.1 Roles
+### 4.1 Roles
 
 Support:
 
-• Display
-• Body
-• Mono
+- Display
+- Body
+- Mono
 
 Display and Body are user-selectable.
 
@@ -374,7 +377,7 @@ Default preference order:
 4. Any available monospace font
 5. Fall back to Body
 
-4.2 Single-family option
+### 4.2 Single-family option
 
 Allow:
 
@@ -382,26 +385,26 @@ Allow:
 
 When enabled:
 
-• Display and Body use the same family
-• The user may choose different styles or weights
-• The generated document remains visually coherent
-• Mono remains separate where available
+- Display and Body use the same family
+- The user may choose different styles or weights
+- The generated document remains visually coherent
+- Mono remains separate where available
 
-────────
+---
 
-5. Unified font picker
+# 5. Unified font picker
 
 Do not show:
 
-• A “Safe Fonts” tab
-• An “All Fonts” tab
-• A segmented control
-• Two separate lists
-• An advanced-mode toggle
+- A “Safe Fonts” tab
+- An “All Fonts” tab
+- A segmented control
+- Two separate lists
+- An advanced-mode toggle
 
 The picker must feel like one font library.
 
-5.1 Font ordering
+## 5.1 Font ordering
 
 Rank fonts in this order:
 
@@ -416,26 +419,26 @@ Do not label these as visible sections.
 
 The ordering should be felt, not explained.
 
-5.2 Search
+## 5.2 Search
 
 The user may search by:
 
-• Family
-• Style
-• Weight
-• Source label
+- Family
+- Style
+- Weight
+- Source label
 
 Search results appear in one list.
 
-5.3 Row design
+## 5.3 Row design
 
 Each font row contains:
 
-• Live family preview
-• Family name
-• Style
-• Subtle availability indicator
-• Optional portability note
+- Live family preview
+- Family name
+- Style
+- Subtle availability indicator
+- Optional portability note
 
 Examples:
 
@@ -458,22 +461,22 @@ Available on this device
 
 Do not use large warning badges.
 
-5.4 Source communication
+## 5.4 Source communication
 
 Use quiet secondary labels:
 
-|Source      |User-facing copy           |
-|------------|---------------------------|
-|FIGMA_HOSTED|No label by default        |
-|ORGANISATION|Available in this workspace|
-|LOCAL       |Available on this device   |
-|UNKNOWN     |Availability may vary      |
+| Source | User-facing copy |
+|---|---|
+| FIGMA_HOSTED | No label by default |
+| ORGANISATION | Available in this workspace |
+| LOCAL | Available on this device |
+| UNKNOWN | Availability may vary |
 
 Portable fonts should look like the default state.
 
 Non-portable fonts should not look dangerous or disabled.
 
-5.5 Portability warning
+## 5.5 Portability warning
 
 Show one contextual note beneath the selected font only when needed.
 
@@ -491,13 +494,13 @@ Do not interrupt selection.
 
 Do not call the font “unsafe.”
 
-5.6 Show-more behaviour
+## 5.6 Show-more behaviour
 
 The initial picker may show:
 
-• Recent fonts
-• High-portability fonts
-• Strong common options
+- Recent fonts
+- High-portability fonts
+- Strong common options
 
 The rest remain accessible through:
 
@@ -507,9 +510,9 @@ This expands the same list.
 
 It must not switch modes.
 
-────────
+---
 
-6. Font discovery
+# 6. Font discovery
 
 Use:
 
@@ -519,7 +522,7 @@ const availableFonts = await figma.listAvailableFontsAsync();
 
 The plugin must build a searchable local index.
 
-6.1 Discovery result
+## 6.1 Discovery result
 
 ```ts
 interface AvailableFontRecord {
@@ -535,37 +538,37 @@ interface AvailableFontRecord {
 }
 ```
 
-6.2 Source inference
+## 6.2 Source inference
 
 Figma may not expose a perfectly reliable source classification for every font.
 
 When source cannot be determined:
 
-• Set source to UNKNOWN
-• Set portability to UNKNOWN
-• Use neutral copy
-• Never claim the font is portable
+- Set source to `UNKNOWN`
+- Set portability to `UNKNOWN`
+- Use neutral copy
+- Never claim the font is portable
 
-6.3 Portable-font allowlist
+## 6.3 Portable-font allowlist
 
 Maintain a local allowlist of broadly available Figma-hosted fonts.
 
 Examples may include:
 
-• Inter
-• Roboto
-• Open Sans
-• Lato
-• Montserrat
-• Source Sans 3
-• IBM Plex Sans
-• Noto Sans
-• Playfair Display
-• Merriweather
-• Poppins
-• Space Grotesk
-• DM Sans
-• Manrope
+- Inter
+- Roboto
+- Open Sans
+- Lato
+- Montserrat
+- Source Sans 3
+- IBM Plex Sans
+- Noto Sans
+- Playfair Display
+- Merriweather
+- Poppins
+- Space Grotesk
+- DM Sans
+- Manrope
 
 The allowlist is a ranking aid.
 
@@ -573,15 +576,15 @@ It is not a guarantee that every recipient has identical access.
 
 Do not describe allowlisted fonts as universally available.
 
-6.4 No network dependency
+## 6.4 No network dependency
 
 The allowlist must ship inside the plugin bundle.
 
 The plugin must not fetch font metadata.
 
-────────
+---
 
-7. Font loading
+# 7. Font loading
 
 Before creating text nodes:
 
@@ -592,7 +595,7 @@ await figma.loadFontAsync({
 });
 ```
 
-7.1 Loading order
+## 7.1 Loading order
 
 Load:
 
@@ -601,27 +604,27 @@ Load:
 3. Mono
 4. Any fallback variants needed by generated components
 
-7.2 Failure handling
+## 7.2 Failure handling
 
 When loading fails:
 
 1. Try another available style in the same family.
 2. Try the nearest weight.
 3. Fall back to the saved portable fallback.
-4. Record W_FONT_FALLBACK.
+4. Record `W_FONT_FALLBACK`.
 5. Update the manifest with the font actually used.
 
 Do not abort the whole generation because one font style failed.
 
-7.3 Source artwork
+## 7.3 Source artwork
 
 Never load or modify fonts inside source logo text nodes unless required to clone the original safely.
 
 Never change the source logo font.
 
-────────
+---
 
-8. Typography step
+# 8. Typography step
 
 Add the step after presentation mode.
 
@@ -643,27 +646,27 @@ GENERATING
 COMPLETE
 ```
 
-8.1 Layout
+## 8.1 Layout
 
 The step contains:
 
-• Live document preview
-• Display font picker
-• Body font picker
-• Use-one-family control
-• One short portability note when relevant
+- Live document preview
+- Display font picker
+- Body font picker
+- Use-one-family control
+- One short portability note when relevant
 
 Do not show the picker as a technical font-management interface.
 
-8.2 Live preview
+## 8.2 Live preview
 
 Show:
 
-• Cover title
-• Page heading
-• Body paragraph
-• Technical label
-• Colour value
+- Cover title
+- Page heading
+- Body paragraph
+- Technical label
+- Colour value
 
 Example content:
 
@@ -680,25 +683,25 @@ Suggested minimum clear space
 
 The preview must update immediately.
 
-8.3 Defaults
+## 8.3 Defaults
 
 Default Display:
 
-• Use the strongest available portable sans or serif appropriate to the selected presentation style.
-• Do not infer from the logo.
-• Default preference: Inter Semi Bold.
+- Use the strongest available portable sans or serif appropriate to the selected presentation style.
+- Do not infer from the logo.
+- Default preference: Inter Semi Bold.
 
 Default Body:
 
-• Inter Regular.
+- Inter Regular.
 
 Default Mono:
 
-• Roboto Mono Regular.
+- Roboto Mono Regular.
 
 The user can change them.
 
-8.4 Do not make recommendations look intelligent
+## 8.4 Do not make recommendations look intelligent
 
 Avoid copy like:
 
@@ -712,48 +715,48 @@ Use:
 
 This recommendation is based on portability and document readability only.
 
-────────
+---
 
-9. Typography application
+# 9. Typography application
 
 The selected fonts shape the generated document.
 
-9.1 Display typeface
+## 9.1 Display typeface
 
 Use for:
 
-• Cover brand name
-• Cover descriptor where appropriate
-• Page titles
-• Large numeric callouts
-• Recommended minimum-size statement
-• Major section statements
+- Cover brand name
+- Cover descriptor where appropriate
+- Page titles
+- Large numeric callouts
+- Recommended minimum-size statement
+- Major section statements
 
-9.2 Body typeface
-
-Use for:
-
-• Page leads
-• Body copy
-• Usage guidance
-• Notes
-• Descriptions
-• Warnings
-• Captions where mono is unnecessary
-
-9.3 Mono typeface
+## 9.2 Body typeface
 
 Use for:
 
-• HEX
-• RGB
-• HSL
-• Measurements
-• Aspect ratios
-• Manifest id
-• Technical values
+- Page leads
+- Body copy
+- Usage guidance
+- Notes
+- Descriptions
+- Warnings
+- Captions where mono is unnecessary
 
-9.4 Style mapping
+## 9.3 Mono typeface
+
+Use for:
+
+- HEX
+- RGB
+- HSL
+- Measurements
+- Aspect ratios
+- Manifest id
+- Technical values
+
+## 9.4 Style mapping
 
 Map available styles deterministically.
 
@@ -770,13 +773,13 @@ interface FontRoleStyles {
 
 When a precise style is unavailable:
 
-• Choose the nearest available style
-• Do not synthesise a fake style
-• Do not assume style names are standardised
+- Choose the nearest available style
+- Do not synthesise a fake style
+- Do not assume style names are standardised
 
-────────
+---
 
-10. Typography page
+# 10. Typography page
 
 Add one Typography page to the document.
 
@@ -791,7 +794,7 @@ The page documents the fonts selected for the handover document. It does not cla
 
 The current single-column specimen is too sparse and must not be used as the default composition. The page should feel like an editorial type specimen, with hierarchy, rhythm and practical examples of use.
 
-10.1 Page title
+## 10.1 Page title
 
 > Typography
 
@@ -805,71 +808,71 @@ If the user explicitly confirms the typefaces as brand fonts, allow the lead to 
 
 Do not default to that claim.
 
-10.2 Required content
+## 10.2 Required content
 
 Every Typography page must include:
 
-• Display family and selected style
-• Body family and selected style
-• Mono family where available
-• Oversized display specimen
-• Alphabet and numeral specimen
-• A realistic heading and paragraph composition
-• A small hierarchy demonstration
-• Weight or style comparison where variants exist
-• Technical-value example using the mono face
-• Quiet availability note when relevant
+- Display family and selected style
+- Body family and selected style
+- Mono family where available
+- Oversized display specimen
+- Alphabet and numeral specimen
+- A realistic heading and paragraph composition
+- A small hierarchy demonstration
+- Weight or style comparison where variants exist
+- Technical-value example using the mono face
+- Quiet availability note when relevant
 
 Do not place all content in one narrow column with a large empty right side.
 
-10.3 Layout system
+## 10.3 Layout system
 
 Use a 12-column editorial grid. Select one of the following compositions based on the selected font relationship.
 
-A. Typeface Pairing
+### A. Typeface Pairing
 
 For different Display and Body families:
 
-• Display specimen spans columns 1–7.
-• Body specimen spans columns 8–12.
-• A full-width hierarchy strip sits across the lower third.
-• Technical and availability metadata sits in a restrained footer band.
+- Display specimen spans columns 1–7.
+- Body specimen spans columns 8–12.
+- A full-width hierarchy strip sits across the lower third.
+- Technical and availability metadata sits in a restrained footer band.
 
 Display area contains:
 
-• Oversized Aa or a short brand-neutral word
-• Family name
-• Style name
-• Uppercase alphabet
-• Numerals
-• One expressive heading
+- Oversized `Aa` or a short brand-neutral word
+- Family name
+- Style name
+- Uppercase alphabet
+- Numerals
+- One expressive heading
 
 Body area contains:
 
-• Family and style
-• Sentence-case alphabet
-• Paragraph at intended reading size
-• Caption and small-label examples
-• Line-height and size examples
+- Family and style
+- Sentence-case alphabet
+- Paragraph at intended reading size
+- Caption and small-label examples
+- Line-height and size examples
 
-B. Single Family
+### B. Single Family
 
 When one family is used throughout:
 
-• Use one oversized editorial composition across the top two-thirds.
-• Show Display, Medium, Regular and Mono roles as a horizontal comparison.
-• Include one realistic content block demonstrating H1, H2, body, caption and value styles.
-• Use scale and alignment rather than cards to distinguish roles.
+- Use one oversized editorial composition across the top two-thirds.
+- Show Display, Medium, Regular and Mono roles as a horizontal comparison.
+- Include one realistic content block demonstrating H1, H2, body, caption and value styles.
+- Use scale and alignment rather than cards to distinguish roles.
 
-C. Limited Variant
+### C. Limited Variant
 
 When only one or two usable styles are available:
 
-• Do not fake a weight comparison.
-• Build contrast through size, spacing, case and colour.
-• Explain quietly that the document uses the available styles.
+- Do not fake a weight comparison.
+- Build contrast through size, spacing, case and colour.
+- Explain quietly that the document uses the available styles.
 
-10.4 Hierarchy specimen
+## 10.4 Hierarchy specimen
 
 Include a practical mini-layout instead of only an alphabet dump.
 
@@ -886,13 +889,13 @@ Minimum clear space           32 px
 
 The hierarchy specimen should demonstrate:
 
-• Page title
-• Section heading
-• Body paragraph
-• Caption
-• Technical value
+- Page title
+- Section heading
+- Body paragraph
+- Caption
+- Technical value
 
-10.5 Type scale
+## 10.5 Type scale
 
 Generate a compact type-scale reference using the actual document styles.
 
@@ -917,7 +920,7 @@ interface TextStyleSpec {
 
 Show no more than six styles. The page is a handover document, not a full design-system specification.
 
-10.6 Specimen content
+## 10.6 Specimen content
 
 Display specimen:
 
@@ -936,19 +939,19 @@ A clear identity system helps a brand remain recognisable across every context.
 
 Do not use pangrams by default.
 
-10.7 Visual direction
+## 10.7 Visual direction
 
-• Use generous scale contrast.
-• Balance the full frame; avoid large accidental empty zones.
-• Let the typeface itself become the primary visual asset.
-• Use rules, baseline alignment and spacing to create structure.
-• Avoid small card grids.
-• Avoid presenting the page like a settings screen.
-• Keep samples large enough to judge shape, rhythm and texture.
-• Use the extracted brand palette sparingly for dividers, page numbers or specimen highlights.
-• Maintain presentation-mode contrast requirements.
+- Use generous scale contrast.
+- Balance the full frame; avoid large accidental empty zones.
+- Let the typeface itself become the primary visual asset.
+- Use rules, baseline alignment and spacing to create structure.
+- Avoid small card grids.
+- Avoid presenting the page like a settings screen.
+- Keep samples large enough to judge shape, rhythm and texture.
+- Use the extracted brand palette sparingly for dividers, page numbers or specimen highlights.
+- Maintain presentation-mode contrast requirements.
 
-10.8 Availability note
+## 10.8 Availability note
 
 For local or organisation fonts, place a small note at the bottom:
 
@@ -956,18 +959,18 @@ For local or organisation fonts, place a small note at the bottom:
 
 Do not let the note dominate the page.
 
-10.9 No fake brand guidance
+## 10.9 No fake brand guidance
 
 Do not automatically generate:
 
-• Font-pairing rationale
-• Tone claims
-• Brand personality claims
-• Recommended web fallbacks
-• Licensing claims
-• CSS stacks
+- Font-pairing rationale
+- Tone claims
+- Brand personality claims
+- Recommended web fallbacks
+- Licensing claims
+- CSS stacks
 
-11. Document architecture
+# 11. Document architecture
 
 For one logo entry:
 
@@ -991,46 +994,46 @@ Typography remains present unless font discovery fails entirely.
 
 When font discovery fails:
 
-• Use an internal fallback
-• Generate the document
-• Omit the Typography page
-• Record W_FONT_DISCOVERY_FAILED
+- Use an internal fallback
+- Generate the document
+- Omit the Typography page
+- Record `W_FONT_DISCOVERY_FAILED`
 
-────────
+---
 
-12. Typography and presentation modes
+# 12. Typography and presentation modes
 
-12.1 Light mode
-
-Prefer:
-
-• Strong dark display text
-• Restrained body typography
-• High whitespace
-• Display family may be serif or sans
-
-12.2 Dark mode
+## 12.1 Light mode
 
 Prefer:
 
-• Display weights with sufficient stroke strength
-• Avoid very thin styles
-• Ensure body rendering remains legible
-• Use light text that passes contrast
+- Strong dark display text
+- Restrained body typography
+- High whitespace
+- Display family may be serif or sans
 
-12.3 Brand mode
+## 12.2 Dark mode
+
+Prefer:
+
+- Display weights with sufficient stroke strength
+- Avoid very thin styles
+- Ensure body rendering remains legible
+- Use light text that passes contrast
+
+## 12.3 Brand mode
 
 Check selected type against brand surfaces.
 
 When a chosen style becomes unreadable:
 
-• Use another generated colour scale step
-• Do not silently change the selected font
-• Only change the colour treatment
+- Use another generated colour scale step
+- Do not silently change the selected font
+- Only change the colour treatment
 
-────────
+---
 
-13. Manifest changes
+# 13. Manifest changes
 
 ```ts
 interface GenerationManifest {
@@ -1044,50 +1047,50 @@ interface GenerationManifest {
 
 Persist:
 
-• Display family and style
-• Body family and style
-• Mono family and style
-• Source classifications
-• Portability classifications
-• Actual loaded fallbacks
-• Use-one-family state
+- Display family and style
+- Body family and style
+- Mono family and style
+- Source classifications
+- Portability classifications
+- Actual loaded fallbacks
+- Use-one-family state
 
-────────
+---
 
-14. Re-run behaviour
+# 14. Re-run behaviour
 
 On re-run:
 
-• Preselect the previous fonts when still available
-• Preserve the previous source labels
-• Warn when a font is no longer available
-• Offer the nearest style in the same family
-• Fall back only after user confirmation during the Typography step
+- Preselect the previous fonts when still available
+- Preserve the previous source labels
+- Warn when a font is no longer available
+- Offer the nearest style in the same family
+- Fall back only after user confirmation during the Typography step
 
 Do not silently replace a missing selected family before the user sees the change.
 
-────────
+---
 
-15. Privacy
+# 15. Privacy
 
 The plugin may inspect the list of fonts available to the current Figma environment.
 
 It must not:
 
-• Upload font names
-• Upload font availability
-• Upload organisation font metadata
-• Read font files
-• Export font files
-• Share local font paths
-• Download fonts
-• Send typography analytics
+- Upload font names
+- Upload font availability
+- Upload organisation font metadata
+- Read font files
+- Export font files
+- Share local font paths
+- Download fonts
+- Send typography analytics
 
-────────
+---
 
-16. Errors and warnings
+# 16. Errors and warnings
 
-Blocking errors
+## Blocking errors
 
 ```text
 E_NO_FONTS_AVAILABLE
@@ -1098,7 +1101,7 @@ These should rarely block the full plugin.
 
 Where possible, fall back and proceed.
 
-Warnings
+## Warnings
 
 ```text
 W_FONT_FALLBACK
@@ -1109,28 +1112,28 @@ W_SELECTED_FONT_MISSING
 W_STYLE_SUBSTITUTED
 ```
 
-User-facing language
+## User-facing language
 
 Avoid:
 
-• Unsafe font
-• Unsupported font
-• Bad choice
-• Incompatible font
+- Unsafe font
+- Unsupported font
+- Bad choice
+- Incompatible font
 
 Prefer:
 
-• Available on this device
-• Available in this workspace
-• Availability may vary
-• Another style was used
-• Another editor may need access to this font
+- Available on this device
+- Available in this workspace
+- Availability may vary
+- Another style was used
+- Another editor may need access to this font
 
-────────
+---
 
-17. Visual acceptance criteria
+# 17. Visual acceptance criteria
 
-Typography step
+## Typography step
 
 1. The picker appears as one continuous experience.
 2. There are no Safe/All tabs.
@@ -1141,7 +1144,7 @@ Typography step
 7. The live preview updates without reopening the picker.
 8. A local-font warning does not interrupt selection.
 
-Typography page
+## Typography page
 
 9. The page looks like a premium type specimen.
 10. It does not use a grid of small font cards.
@@ -1151,7 +1154,7 @@ Typography page
 14. The page does not claim the fonts were extracted from the logo.
 15. The page adapts to same-family and paired-family selections.
 
-Whole document
+## Whole document
 
 16. Selected typography is applied consistently.
 17. Mono values remain visually distinct.
@@ -1166,11 +1169,11 @@ Whole document
 26. Every palette colour includes an editable human-readable name.
 27. Generated colour names remain secondary to exact numeric values.
 
-────────
+---
 
-18. Functional acceptance criteria
+# 18. Functional acceptance criteria
 
-1. listAvailableFontsAsync() is called once per plugin launch unless refresh is requested.
+1. `listAvailableFontsAsync()` is called once per plugin launch unless refresh is requested.
 2. Search covers family and style.
 3. Display and Body fonts can come from any available source.
 4. Portable and non-portable fonts appear in one list.
@@ -1194,25 +1197,25 @@ Whole document
 22. Users can edit suggested colour names without changing the underlying colour.
 23. Duplicate colour names are disambiguated deterministically.
 
-────────
+---
 
-19. Definition of done
+# 19. Definition of done
 
 Logo Kit v10 is complete when:
 
-• Users can select both portable and locally available fonts
-• The picker does not feel split into separate modes
-• Portable fonts are prioritised without hiding the full library
-• Local and organisation fonts carry subtle, accurate availability notes
-• Selected fonts shape the entire handover document
-• The Typography page feels like a premium brand-document page
-• The plugin never claims to identify the logo’s font
-• Missing fonts fail gracefully
-• No font files are downloaded, embedded or exposed
-• No network traffic occurs
-• Source artwork remains unchanged
-• The plugin UI includes a persistent, secondary credit for Leslie Williams and Ovalay Studios
-• Every generated document includes linked creator credits on the Cover and Notes pages
-• The creator link resolves to https://x.com/shugardadddy
-• Every extracted colour receives an editable, locally generated name
-• The Typography page feels complete, editorial and intentionally composed rather than sparse
+- Users can select both portable and locally available fonts
+- The picker does not feel split into separate modes
+- Portable fonts are prioritised without hiding the full library
+- Local and organisation fonts carry subtle, accurate availability notes
+- Selected fonts shape the entire handover document
+- The Typography page feels like a premium brand-document page
+- The plugin never claims to identify the logo’s font
+- Missing fonts fail gracefully
+- No font files are downloaded, embedded or exposed
+- No network traffic occurs
+- Source artwork remains unchanged
+- The plugin UI includes a persistent, secondary credit for Leslie Williams and Ovalay Studios
+- Every generated document includes linked creator credits on the Cover and Notes pages
+- The creator link resolves to https://x.com/shugardadddy
+- Every extracted colour receives an editable, locally generated name
+- The Typography page feels complete, editorial and intentionally composed rather than sparse
