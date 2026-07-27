@@ -1,49 +1,12 @@
-# Logo Kit — Figma Plugin Specification (v10, Branded Edition)
+# Logo Kit — Figma Plugin Specification 
 
-**Status:** Implementation-ready  
-**Supersedes:** v9  
+**Information:** Copy this whole document as is, or Customize to your heart's content. 
 **Runtime:** Figma Plugin API, main thread + UI iframe  
 **Network:** None  
 **Backend:** None  
 **External AI:** None  
-**Product credit:** Leslie Williams, Ovalay Studios  
+**Prompt credit:** Leslie Williams, Ovalay Studios  
 **Creator link:** https://x.com/shugardadddy  
-
----
-
-## 0. What changed from v9
-
-v10 introduces typography without turning the plugin into a typography-detection tool.
-
-The plugin now allows the user to choose fonts already available in their Figma environment and use them across the generated handover document.
-
-Two font sources are supported:
-
-- Portable fonts that are broadly available inside Figma
-- All fonts available to the current user, including local and organisation fonts
-
-These must not appear as two visibly separate modes.
-
-The experience should feel like one intelligent font picker that:
-
-- Prioritises portable choices
-- Still exposes the full font library
-- Clearly communicates portability risk
-- Does not force the user to understand Figma font infrastructure
-- Does not visually split the UI into “Safe” and “Advanced” sections
-
-### Binding changes
-
-1. Add a Typography step to the generation flow.
-2. Add one unified font picker.
-3. Rank portable fonts first without creating separate tabs.
-4. Surface local or organisation fonts through subtle metadata.
-5. Add Display and Body font roles.
-6. Add a Typography presentation page.
-7. Use the selected typography throughout the generated document.
-8. Never attempt to identify fonts from the logo artwork.
-9. Never download or embed font files.
-10. Never imply that a selected local font will be editable for every recipient.
 
 ---
 
